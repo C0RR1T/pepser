@@ -146,8 +146,7 @@ components:
           example: I love Java
         content:
           type: string
-          example: |
-          I love that everything is nullable, it just makes it so flexible.
+          example: I love that everything is nullable, it just makes it so flexible.
         author:
           type: string
           maxLength: 50
