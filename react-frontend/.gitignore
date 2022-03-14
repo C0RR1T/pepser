@@ -35,3 +35,5 @@ yarn-error.log*
 /.changelog
 .npm/
 dist
+
+src/generated/**
