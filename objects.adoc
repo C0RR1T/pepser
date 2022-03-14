@@ -31,5 +31,7 @@ Post -- User
 
 Post -- Category
 
+Post --  Comment
+
 @enduml
 ----
