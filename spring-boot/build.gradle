@@ -32,7 +32,7 @@ tasks.openApiGenerate.enabled = false
 
 task openApiGenerateSpringboot(type: GenerateTask) {
 	generatorName = "spring"
-	inputSpec = file("openapi-spec.yaml").absolutePath
+	inputSpec = file("../openapi-spec.yaml").absolutePath
 	outputDir = file('build/generated/openapi-spring').absolutePath
 	library = "spring-boot"
 	additionalProperties = [
@@ -47,8 +47,8 @@ task openApiGenerateSpringboot(type: GenerateTask) {
 
 task openApiGenerateJavascript(type: GenerateTask) {
 	generatorName = "typescript-fetch"
-	inputSpec = file("openapi-spec.yaml").absolutePath
-	outputDir = file('src/generated/openapi').absolutePath
+	inputSpec = file("../openapi-spec.yaml").absolutePath
+	outputDir = file('../react-frontend/src/generated/openapi').absolutePath
 	additionalProperties = [
 		"typescriptThreePlus": "true",
 	]
