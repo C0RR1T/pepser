@@ -8,6 +8,8 @@ servers:
 paths:
   /categories:
     get:
+      tags:
+        - Category
       summary: Get all categories
       operationId: getCategories
       responses:
@@ -20,6 +22,8 @@ paths:
                 items:
                   $ref: "#/components/schemas/Category"
     post:
+      tags:
+        - Category
       summary: Create a category
       operationId: createCategory
       requestBody:
@@ -40,6 +44,8 @@ paths:
           description: Category name too long
   /posts:
     get:
+      tags:
+        - Post
       summary: Get all posts of a category
       operationId: getPosts
       parameters:
@@ -61,6 +67,8 @@ paths:
     post:
       summary: Create a post
       operationId: createPost
+      tags:
+        - Post
       requestBody:
         content:
           application/json:
@@ -87,6 +95,8 @@ paths:
         schema:
           type: integer
     get:
+      tags:
+        - Comments
       summary: Get all Comments of a post
       operationId: getComments
       responses:
@@ -103,6 +113,8 @@ paths:
     post:
       summary: Post a new comment to a post
       operationId: createComment
+      tags:
+        - Comments
       requestBody:
         content:
           application/json:
