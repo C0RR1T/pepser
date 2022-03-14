@@ -45,21 +45,28 @@ paths:
                 $ref: "#/components/schemas/PonyDto"
 components:
   schemas:
-    PonyDto:
+    Post:
       required:
-        - name
-        - birthday
+        - title
+        - content
+        - createdDate
       properties:
         id:
           type: integer
           example: 42
           minimum: 0
           readOnly: true
-        name:
+        title:
           type: string
           minLength: 1
-          example: Thunder
-        birthday:
+          example: I love Java
+        content:
+          type: string
+          example: I love that everything is nullable, it just makes it so flexible.
+        author:
+          type: string
+        createdDate:
           type: string
           format: date
           example: 2021-01-31
+          readOnly: true

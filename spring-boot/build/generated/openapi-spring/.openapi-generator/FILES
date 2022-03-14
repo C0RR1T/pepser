@@ -1,6 +1,0 @@
-.openapi-generator-ignore
-README.md
-pom.xml
-src/main/java/ch/bbw/m226/openapi/generated/controller/ApiUtil.java
-src/main/java/ch/bbw/m226/openapi/generated/controller/PoniesApi.java
-src/main/java/ch/bbw/m226/openapi/generated/dto/PonyDto.java
