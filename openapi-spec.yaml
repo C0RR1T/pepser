@@ -44,11 +44,10 @@ paths:
       operationId: getPosts
       parameters:
         - name: categoryId
-          required: false
+          required: true
           in: query
           schema:
             type: integer
-            required: true
             description: ID of the category
       responses:
         200:
