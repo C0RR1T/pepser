@@ -1,54 +1,138 @@
 openapi: "3.0.3"
 info:
   version: 0.0.1
-  title: Ponyhof API
-  description: A small sample API to grasp the basics of the OpenAPI Specification
+  title: Pepser
+  description: Another reddit clone
 servers:
   - url: http://localhost:8080/api
 paths:
-  /ponies:
+  /categories:
     get:
-      summary: List all ponies
-      operationId: getPonies
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time
-          required: false
-          schema:
-            type: integer
-            format: int32
+      summary: Get all categories
+      operationId: getCategories
       responses:
         200:
-          description: An paged array of pets
+          description: An array of Categories
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/PonyDto"
+                  $ref: "#/components/schemas/Category"
     post:
-      summary: introduce a new pony to the flock
-      operationId: addPony
+      summary: Create a category
+      operationId: createCategory
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PonyDto"
+              $ref: "#/components/schemas/Category"
       responses:
         201:
-          description: added the pony
+          description: Category created successfully
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PonyDto"
+                $ref: "#/components/schemas/Category"
+        409:
+          description: Category name already exists
+        400:
+          description: Category name too long
+  /posts:
+    get:
+      summary: Get all posts of a category
+      operationId: getPosts
+      parameters:
+        - name: categoryId
+          required: false
+          in: query
+          schema:
+            type: integer
+            required: true
+            description: ID of the category
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Post"
+          description: All Posts in a category
+    post:
+      summary: Create a post
+      operationId: createPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
+      responses:
+        201:
+          description: Created a post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+        400:
+          description: Either username or content too long
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/PostError"
+
+  /posts/{postId}/comments:
+    parameters:
+      - name: postId
+        in: path
+        schema:
+          type: integer
+    get:
+      summary: Get all Comments of a post
+      operationId: getComments
+      responses:
+        200:
+          description: All comments of a Post
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+        404:
+          description: Post not found
+    post:
+      summary: Post a new comment to a post
+      operationId: createComment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Comment"
+      responses:
+        201:
+          description: Comment successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
+        400:
+          description: Either username or content too long
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/PostError"
+        404:
+          description: Post not found
+
 components:
   schemas:
     Post:
       required:
         - title
         - content
+        - category
+        - author
         - createdDate
       properties:
         id:
@@ -62,11 +146,61 @@ components:
           example: I love Java
         content:
           type: string
-          example: I love that everything is nullable, it just makes it so flexible.
+          example: |
+          I love that everything is nullable, it just makes it so flexible.
         author:
           type: string
+          maxLength: 50
+          example: XxTheRealZuck(erberg)HDxX
         createdDate:
           type: string
           format: date
           example: 2021-01-31
           readOnly: true
+        category:
+          type: integer
+          example: 5
+          minimum: 0
+          readOnly: true
+    Comment:
+      required:
+        - user
+        - content
+        - post
+        - id
+      properties:
+        id:
+          type: integer
+          example: 3
+          minimum: 0
+          readOnly: true
+        content:
+          type: string
+          example: Wow that post absolutely changed my life
+          minLength: 1
+        user:
+          type: string
+          maxLength: 50
+          example: RealRickAstley
+        post:
+          type: integer
+          example: 50
+    Category:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          example: 2
+          minimum: 0
+          readOnly: true
+        name:
+          type: string
+          maxLength: 20
+          example: Random
+          readOnly: true
+    PostError:
+      enum:
+        - username-too-long
+        - post-too-long
