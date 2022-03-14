@@ -1,0 +1,65 @@
+openapi: "3.0.3"
+info:
+  version: 0.0.1
+  title: Ponyhof API
+  description: A small sample API to grasp the basics of the OpenAPI Specification
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /ponies:
+    get:
+      summary: List all ponies
+      operationId: getPonies
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PonyDto"
+    post:
+      summary: introduce a new pony to the flock
+      operationId: addPony
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PonyDto"
+      responses:
+        201:
+          description: added the pony
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PonyDto"
+components:
+  schemas:
+    PonyDto:
+      required:
+        - name
+        - birthday
+      properties:
+        id:
+          type: integer
+          example: 42
+          minimum: 0
+          readOnly: true
+        name:
+          type: string
+          minLength: 1
+          example: Thunder
+        birthday:
+          type: string
+          format: date
+          example: 2021-01-31
