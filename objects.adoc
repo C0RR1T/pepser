@@ -1,0 +1,35 @@
+= Objects
+
+[plantuml]
+----
+@startuml
+
+class Post {
+    id: int
+    title: string
+    content: string
+    createdAt: Date
+}
+
+class User {
+    name: string
+}
+
+class Comment {
+    id: int
+    content: string
+}
+
+class Category {
+    id: int
+    name: string
+}
+
+Comment -- User
+
+Post -- User
+
+Post -- Category
+
+@enduml
+----
