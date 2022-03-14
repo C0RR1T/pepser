@@ -36,4 +36,4 @@ yarn-error.log*
 .npm/
 dist
 
-src/generated/**
+src/generated
