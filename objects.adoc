@@ -11,10 +11,6 @@ class Post {
     createdAt: Date
 }
 
-class User {
-    name: string
-}
-
 class Comment {
     id: int
     content: string
@@ -24,10 +20,6 @@ class Category {
     id: int
     name: string
 }
-
-Comment -- User
-
-Post -- User
 
 Post -- Category
 
