@@ -53,7 +53,7 @@ paths:
           in: path
           schema:
             description: ID of the Category
-            type: number
+            type: integer
       responses:
         200:
           description: Category with given ID

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -17,6 +18,12 @@ public class CategoryController implements CategoriesApi {
 
     public CategoryController(MessageBoardService service) {
         this.service = service;
+    }
+
+
+    @Override
+    public ResponseEntity<Category> categoriesIdGet(Integer id) {
+        return this.service.getCategoryById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
