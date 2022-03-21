@@ -6,6 +6,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Home = () => {
     const { data: categories, status } = useQuery('categories', () =>
@@ -13,22 +15,35 @@ const Home = () => {
     );
     const history = useNavigate();
     return (
-        <Container>
+        <Container fluid={'sm'}>
             {status === 'loading' && (
                 <Spinner animation={'border'} role={'status'} />
             )}
-            {categories &&
-                categories.map(category => (
-                    <Card key={category.id}>
-                        <Card.Title>{category.name}</Card.Title>
-                        <Card.Text>{category.description}</Card.Text>
-                        <Card.Footer>
-                            <Button onClick={() => history(`/${category.id}`)}>
-                                Go to Category
-                            </Button>
-                        </Card.Footer>
-                    </Card>
-                ))}
+            {categories && (
+                <Row md={1} lg={3}>
+                    {categories.map(category => (
+                        <Col>
+                            <Card key={category.id}>
+                                <Card.Body>
+                                    <Card.Title>{category.name}</Card.Title>
+                                    <Card.Text>
+                                        {category.description}
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <Button
+                                        onClick={() =>
+                                            history(`/${category.id}`)
+                                        }>
+                                        Go to Category
+                                    </Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            )}
+
             {status === 'error' && 'There was an error loading data'}
         </Container>
     );
