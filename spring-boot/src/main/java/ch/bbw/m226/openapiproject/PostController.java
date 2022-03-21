@@ -83,6 +83,11 @@ public class PostController implements PostsApi {
     }
 
     @Override
+    public ResponseEntity<List<Post>> getPostById(Integer postId) {
+        return null;
+    }
+
+    @Override
     public ResponseEntity<List<Post>> getPosts(Integer categoryId) {
         return Optional.ofNullable(this.categoryPosts.get(categoryId))
                 .map(ResponseEntity::ok)
