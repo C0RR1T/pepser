@@ -13,7 +13,7 @@ import java.util.List;
 @Validated
 @RestController
 public class CategoryController implements CategoriesApi {
-    private MessageBoardService service;
+    private final MessageBoardService service;
 
     public CategoryController(MessageBoardService service) {
         this.service = service;
@@ -21,7 +21,9 @@ public class CategoryController implements CategoriesApi {
 
     @Override
     public ResponseEntity<Category> createCategory(Category category) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(category);
+        var newCategory = this.service.createCategory(category);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newCategory);
     }
 
     @Override
