@@ -18,8 +18,8 @@ public class MessageBoardService {
     private final Random random = new Random();
 
     public MessageBoardService() {
-        this.categories.put(1, new Category()
-                .id(1)
+        this.categories.put(0, new Category()
+                .id(0)
                 .description("Pictures of Rick Astley")
                 .name("Rick Astley Pics"));
 
