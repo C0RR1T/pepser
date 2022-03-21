@@ -28,6 +28,8 @@ public class MessageBoardService {
                 .category(0)
                 .content("guten morgen")
                 .title("begrüssung")
+                .likes(6)
+                .dislikes(1)
                 .createdDate(LocalDate.of(2020, 5, 1))
         ));
     }

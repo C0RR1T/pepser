@@ -193,6 +193,12 @@ components:
           example: 5
           minimum: 0
           readOnly: true
+        likes:
+          type: integer
+          example: 5
+        dislikes:
+          type: integer
+          example: 1
     Comment:
       required:
         - author
@@ -221,6 +227,12 @@ components:
           format: date
           example: 2021-01-31
           readOnly: true
+        likes:
+          type: integer
+          example: 5
+        dislikes:
+          type: integer
+          example: 1
     Category:
       required:
         - name
