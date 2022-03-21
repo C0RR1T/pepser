@@ -21,28 +21,32 @@ const Post = () => {
             {status === 'loading' && <Spinner animation={'border'} />}
             {post && (
                 <Row>
-                    <Col>
+                    <Col lg={1}>
                         <Row>
-                            <img
-                                src={upvote}
-                                height={42}
-                                width={42}
-                                alt={'Upvote the post'}
-                            />
+                            <Container className={'d-flex justify-content-center'}>
+                                <img
+
+                                    src={upvote}
+                                    width={32}
+                                    alt={'Upvote the post'}
+                                />
+                            </Container>
                         </Row>
-                        <Row>
+                        <Row className={'text-center'}>
                             <b>{(post.likes ?? 0) - (post.dislikes ?? 0)}</b>
                         </Row>
                         <Row>
-                            <img
-                                src={downvote}
-                                height={32}
-                                width={32}
-                                alt={'Downvote the post'}
-                            />
+                            <Container className={'d-flex justify-content-center'}>
+                                <img
+
+                                    src={downvote}
+                                    width={32}
+                                    alt={'Downvote the post'}
+                                />
+                            </Container>
                         </Row>
                     </Col>
-                    <Col md={{ span: 11 }}>
+                    <Col lg={11}>
                         <h1>{post.title}</h1>
                         <Card.Subtitle>
                             Posted on {formatDate(post.createdDate)} by{' '}
@@ -61,4 +65,5 @@ const Post = () => {
 
 const formatDate = (date: Date) => Intl.DateTimeFormat().format(date);
 
+export { formatDate };
 export default Post;
