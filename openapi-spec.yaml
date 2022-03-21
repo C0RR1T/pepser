@@ -174,10 +174,11 @@ components:
           readOnly: true
     Comment:
       required:
-        - user
+        - id
+        - author
         - content
         - post
-        - id
+        - createdDate
       properties:
         id:
           type: integer
@@ -188,13 +189,18 @@ components:
           type: string
           example: Wow that post absolutely changed my life
           minLength: 1
-        user:
+        author:
           type: string
           maxLength: 50
           example: RealRickAstley
         post:
           type: integer
           example: 50
+        createdDate:
+          type: string
+          format: date
+          example: 2021-01-31
+          readOnly: true
     Category:
       required:
         - id

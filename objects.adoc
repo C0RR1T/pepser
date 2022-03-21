@@ -67,3 +67,17 @@ Ich will den Inhalt jegliches Posts bearbeiten.
 === UC4 Post löschen
 
 Ich will einen beliebigen Post löschen.
+
+[plantuml]
+----
+@startuml
+
+actor user
+
+user -> backend : GET /categories
+user <- backend : 200 List<Category>
+
+user -> backend : POST /posts?categoryId=1
+user <- backend : 201 Post
+@enduml
+----
