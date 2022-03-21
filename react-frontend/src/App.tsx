@@ -1,14 +1,18 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
+import Category from './Category';
+import Post from './Post';
 
 const App: React.FC = () => {
     return (
-        <HashRouter>
-            <Route path={'/'}>
-                <Home />
-            </Route>
-        </HashRouter>
+        <BrowserRouter>
+            <Routes>
+                <Route path={'/'} element={<Home />} />
+                <Route path={'/:category'} element={<Category />} />
+                <Route path={'/:category/:post'} element={<Post />} />
+            </Routes>
+        </BrowserRouter>
     );
 };
 
