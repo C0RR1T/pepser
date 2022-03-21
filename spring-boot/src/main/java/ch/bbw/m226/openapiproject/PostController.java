@@ -20,10 +20,13 @@ public class PostController implements PostsApi {
     private final Map<Integer, List<Post>> categoryPosts = new HashMap<>();
     private final Map<Integer, Post> posts = new HashMap<>();
     private final Map<Integer, Map<Integer, Comment>> comments = new HashMap<>();
-
     private final Random random = new Random();
 
-    public PostController() {
+    private MessageBoardService service;
+
+    public PostController(MessageBoardService service) {
+        this.service = service;
+
         this.categories.put(1, new Category()
                 .id(1)
                 .description("Pictures of Rick Astley")

@@ -13,6 +13,12 @@ import java.util.List;
 @Validated
 @RestController
 public class CategoryController implements CategoriesApi {
+    private MessageBoardService service;
+
+    public CategoryController(MessageBoardService service) {
+        this.service = service;
+    }
+
     @Override
     public ResponseEntity<Category> createCategory(Category category) {
         return ResponseEntity.status(HttpStatus.CREATED).body(category);
@@ -20,6 +26,6 @@ public class CategoryController implements CategoriesApi {
 
     @Override
     public ResponseEntity<List<Category>> getCategories() {
-        return ResponseEntity.ok(List.of());
+        return ResponseEntity.ok(this.service.getCategories());
     }
 }
