@@ -36,6 +36,17 @@ public class MessageBoardService {
         return this.categories.values().stream().toList();
     }
 
+    public Category createCategory(Category category) {
+        final var newId = random.nextInt();
+
+        category.id(newId);
+
+        this.categories.put(newId, category);
+        this.posts.put(newId, new ArrayList<>());
+
+        return category;
+    }
+
     public Optional<Post> getPostById(Integer postId) {
         return this.posts.values().stream()
                 .flatMap(Collection::stream)
