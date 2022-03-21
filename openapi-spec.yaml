@@ -171,7 +171,7 @@ components:
           type: integer
           example: 42
           minimum: 0
-          readOnly: true
+          
         title:
           type: string
           minLength: 1
@@ -187,12 +187,12 @@ components:
           type: string
           format: date
           example: 2021-01-31
-          readOnly: true
+          
         category:
           type: integer
           example: 5
           minimum: 0
-          readOnly: true
+          
         likes:
           type: integer
           example: 5
@@ -210,7 +210,7 @@ components:
           type: integer
           example: 3
           minimum: 0
-          readOnly: true
+          
         content:
           type: string
           example: Wow that post absolutely changed my life
@@ -226,7 +226,7 @@ components:
           type: string
           format: date
           example: 2021-01-31
-          readOnly: true
+          
         likes:
           type: integer
           example: 5
@@ -242,16 +242,15 @@ components:
           type: integer
           example: 2
           minimum: 0
-          readOnly: true
+          
         name:
           type: string
           maxLength: 20
           example: Random
-          readOnly: true
         description:
           type: string
           example: Pictures of Rick Astley
-          readOnly: true
+          
     PostError:
       enum:
         - username-too-long
