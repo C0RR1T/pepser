@@ -217,7 +217,7 @@ components:
           maxLength: 20
           example: Random
           readOnly: true
-        decription:
+        description:
           type: string
           example: Pictures of Rick Astley
           readOnly: true
