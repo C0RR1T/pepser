@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    println!("🦀🦀🦀 YOU HAVE BEEN REWRITTEN IN RUST 🦀🦀🦀 ");
 }
