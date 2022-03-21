@@ -27,3 +27,43 @@ Post --  Comment
 
 @enduml
 ----
+
+== Use cases
+
+.Usecase diagramm von dem Messageboard
+[plantuml]
+----
+@startuml
+
+left to right direction
+
+rectangle MessageBoard {
+    usecase "Post erstellen" as UC1
+    usecase "Post Kommentieren" as UC2
+    usecase "Post bearbeiten" as UC3
+    usecase "Post löschen" as UC4
+}
+
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+
+@enduml
+----
+
+=== UC1 Post erstellen
+
+Ich will unter einem beliebigen Namen einen Post erstellen.
+
+=== UC2 Post Kommentieren
+
+Ich will unter einem Post unter einem beliebigen Namen einen Kommentar erstellen.
+
+=== UC3 Post bearbeiten
+
+Ich will den Inhalt jegliches Posts bearbeiten.
+
+=== UC4 Post löschen
+
+Ich will einen beliebigen Post löschen.
