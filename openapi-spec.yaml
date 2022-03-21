@@ -205,6 +205,7 @@ components:
       required:
         - id
         - name
+        - description
       properties:
         id:
           type: integer
@@ -215,6 +216,10 @@ components:
           type: string
           maxLength: 20
           example: Random
+          readOnly: true
+        decription:
+          type: string
+          example: Pictures of Rick Astley
           readOnly: true
     PostError:
       enum:
