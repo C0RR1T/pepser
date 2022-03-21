@@ -174,7 +174,6 @@ components:
           readOnly: true
     Comment:
       required:
-        - id
         - author
         - content
         - post
@@ -203,7 +202,6 @@ components:
           readOnly: true
     Category:
       required:
-        - id
         - name
         - description
       properties:
