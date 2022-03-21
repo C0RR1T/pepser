@@ -77,11 +77,8 @@ public class PostController implements PostsApi {
 
     @Override
     public ResponseEntity<List<Comment>> getComments(Integer postId) {
-        return Optional.ofNullable(this.comments.get(postId))
-                .map(comments -> {
-                    final var commentList = comments.values().stream().toList();
-                    return ResponseEntity.ok(commentList);
-                })
+        return this.service.getComments(postId)
+                .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

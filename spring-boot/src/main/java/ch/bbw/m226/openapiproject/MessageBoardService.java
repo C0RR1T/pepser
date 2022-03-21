@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class MessageBoardService {
@@ -40,8 +41,8 @@ public class MessageBoardService {
         return this.categories.values().stream().toList();
     }
 
-    public List<Comment> getComments(Integer postId) {
-        return null;
+    public Optional<List<Comment>> getComments(Integer postId) {
+        return Optional.ofNullable(this.comments.get(postId));
     }
 
     public Comment createComment(Integer postId, Comment comment) {
