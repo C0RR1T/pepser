@@ -105,10 +105,10 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Post"
+                $ref: "#/components/schemas/Post"
           description: All Posts in a category
+        404:
+          description: Post not found
   /posts/{postId}/comments:
     parameters:
       - name: postId
