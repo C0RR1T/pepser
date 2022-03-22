@@ -20,12 +20,6 @@ public class CategoryController implements CategoriesApi {
         this.service = service;
     }
 
-
-    @Override
-    public ResponseEntity<Category> categoriesIdGet(Integer id) {
-        return this.service.getCategoryById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
     @Override
     public ResponseEntity<Category> createCategory(Category category) {
         var newCategory = this.service.createCategory(category);
@@ -36,5 +30,10 @@ public class CategoryController implements CategoriesApi {
     @Override
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok(this.service.getCategories());
+    }
+
+    @Override
+    public ResponseEntity<Category> getCategoryById(Integer id) {
+        return this.service.getCategoryById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
