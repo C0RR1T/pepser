@@ -30,7 +30,13 @@ const Navigation = () => {
                 }}>
                 <Container>
                     <Navbar.Brand>
-                        <img src={logo} height={64} alt={'Logo of Pepser'} />
+                        <Link to={'/'}>
+                            <img
+                                src={logo}
+                                height={64}
+                                alt={'Logo of Pepser'}
+                            />
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Brand>Pepser</Navbar.Brand>
                     <Navbar.Collapse id='basic-navbar-nav'>

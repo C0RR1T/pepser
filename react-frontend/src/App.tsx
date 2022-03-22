@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Category from './category/Category';
-import Post from './Post';
+import Post from './post/Post';
 import Navigation from './Navigation';
 
 const App: React.FC = () => {

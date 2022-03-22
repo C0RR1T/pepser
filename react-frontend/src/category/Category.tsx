@@ -3,9 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { CategoryApi, PostApi } from '../generated/openapi';
 import Container from 'react-bootstrap/Container';
-import Spinner from 'react-bootstrap/Spinner';
 import { Card } from 'react-bootstrap/cjs';
-import { formatDate } from '../Post';
+import { formatDate } from '../post/Post';
 import Button from 'react-bootstrap/Button';
 import LoadContainer from '../LoadContainer';
 
