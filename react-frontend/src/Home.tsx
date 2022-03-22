@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import LoadContainer from './LoadContainer';
 
 const Home = () => {
     const { data: categories, status } = useQuery('categories', () =>
@@ -16,9 +17,7 @@ const Home = () => {
     const history = useNavigate();
     return (
         <Container fluid={'sm'}>
-            {status === 'loading' && (
-                <Spinner animation={'border'} role={'status'} />
-            )}
+            {status === 'loading' && <LoadContainer />}
             {categories && (
                 <Row md={1} lg={3}>
                     {categories.map(category => (

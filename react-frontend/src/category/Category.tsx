@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Card } from 'react-bootstrap/cjs';
 import { formatDate } from '../Post';
 import Button from 'react-bootstrap/Button';
+import LoadContainer from '../LoadContainer';
 
 const Category = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Category = () => {
             <h1>{category?.name}</h1>
             <p>{category?.description}</p>
             <hr />
-            {status === 'loading' && <Spinner animation={'border'} />}
+            {status === 'loading' && <LoadContainer />}
             {posts &&
                 posts.map(post => (
                     <Card key={post.id}>
