@@ -49,6 +49,10 @@ public class MessageBoardService {
         return category;
     }
 
+    public Optional<Category> getCategoryById(Integer id) {
+        return this.categories.values().stream().filter(val -> val.getId().equals(id)).findFirst();
+    }
+
     public Optional<Post> getPostById(Integer postId) {
         return this.posts.values().stream()
                 .flatMap(Collection::stream)

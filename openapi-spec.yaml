@@ -42,6 +42,27 @@ paths:
           description: Category name already exists
         400:
           description: Category name too long
+  /categories/{id}:
+    get:
+      tags:
+        - Category
+      summary: Get Category by id
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            description: ID of the Category
+            type: integer
+      responses:
+        200:
+          description: Category with given ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        404:
+          description: Category not found
   /posts:
     get:
       tags:
