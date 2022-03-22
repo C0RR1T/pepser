@@ -47,6 +47,7 @@ paths:
       tags:
         - Category
       summary: Get Category by id
+      operationId: getCategoryById
       parameters:
         - name: id
           required: true
