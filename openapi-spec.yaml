@@ -103,12 +103,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Post"
-        400:
-          description: Either username or content too long
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/PostError"
   /posts/{postId}:
     get:
       tags:
@@ -170,12 +164,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Comment"
-        400:
-          description: Either username or content too long
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/PostError"
         404:
           description: Post not found
 
@@ -193,7 +181,6 @@ components:
           type: integer
           example: 42
           minimum: 0
-          
         title:
           type: string
           minLength: 1
@@ -209,12 +196,10 @@ components:
           type: string
           format: date
           example: 2021-01-31
-          
         category:
           type: integer
           example: 5
           minimum: 0
-          
         likes:
           type: integer
           example: 5
@@ -232,7 +217,6 @@ components:
           type: integer
           example: 3
           minimum: 0
-          
         content:
           type: string
           example: Wow that post absolutely changed my life
@@ -248,7 +232,6 @@ components:
           type: string
           format: date
           example: 2021-01-31
-          
         likes:
           type: integer
           example: 5
@@ -264,7 +247,6 @@ components:
           type: integer
           example: 2
           minimum: 0
-          
         name:
           type: string
           maxLength: 20
@@ -272,8 +254,3 @@ components:
         description:
           type: string
           example: Pictures of Rick Astley
-          
-    PostError:
-      enum:
-        - username-too-long
-        - post-too-long

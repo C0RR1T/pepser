@@ -8,17 +8,27 @@ class Post {
     id: int
     title: string
     content: string
-    createdAt: Date
+    author: string
+    createdDate: Date
+    category: int
+    likes: int
+    dislikes: int
 }
 
 class Comment {
     id: int
     content: string
+    author: string
+    post: int
+    createdDate: Date
+    likes: int
+    dislikes: int
 }
 
 class Category {
     id: int
     name: string
+    description: string
 }
 
 Post -- Category
@@ -68,16 +78,23 @@ Ich will den Inhalt jegliches Posts bearbeiten.
 
 Ich will einen beliebigen Post löschen.
 
+== UC5 Kategorie erstellen
+
 [plantuml]
 ----
 @startuml
 
 actor user
 
-user -> backend : GET /categories
-user <- backend : 200 List<Category>
-
-user -> backend : POST /posts?categoryId=1
+user -> backend : POST /posts
 user <- backend : 201 Post
 @enduml
 ----
+
+Vom user kann eine neue Kategorie erstellt werden.
+
+== Test cases
+=== 1 Applikation funktioniert
+1. Applikation starten
+2. schauen ob sie funktioniert
+3. sie sollte funktionieren
