@@ -32,8 +32,8 @@ tasks.openApiGenerate.enabled = false
 
 task openApiGenerateSpringboot(type: GenerateTask) {
 	generatorName = "spring"
-	inputSpec = file("../openapi-spec.yaml").absolutePath
-	outputDir = file('build/generated/openapi-spring').absolutePath
+	inputSpec = file(project.projectDir.toString() + "/../openapi-spec.yaml").absolutePath
+	outputDir = file(project.projectDir.toString() + '/../react-frontend/src/generated/openapi').absolutePath
 	library = "spring-boot"
 	additionalProperties = [
 			"basePackage": "ch.bbw.m226.openapi.generated",
@@ -47,8 +47,8 @@ task openApiGenerateSpringboot(type: GenerateTask) {
 
 task openApiGenerateJavascript(type: GenerateTask) {
 	generatorName = "typescript-fetch"
-	inputSpec = file("../openapi-spec.yaml").absolutePath
-	outputDir = file('../react-frontend/src/generated/openapi').absolutePath
+	inputSpec = file(project.projectDir.toString() + "/../openapi-spec.yaml").absolutePath
+	outputDir = file(project.projectDir.toString() + '/../react-frontend/src/generated/openapi').absolutePath
 	additionalProperties = [
 		"typescriptThreePlus": "true",
 	]
@@ -62,7 +62,7 @@ task openapi {
 compileJava.dependsOn openApiGenerateSpringboot
 
 openApiValidate {
-	inputSpec = file("openapi-spec.yaml").absolutePath
+	inputSpec = file(project.projectDir.toString() + "/../openapi-spec.yaml").absolutePath
 }
 test {
 	dependsOn tasks.openApiValidate
