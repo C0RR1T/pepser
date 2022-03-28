@@ -1,16 +1,16 @@
 package ch.bbw.m226.openapiproject;
 
-import java.util.UUID;
-
 import ch.bbw.m226.openapi.generated.dto.Category;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+@Import({MessageBoardService.class})
 @WebFluxTest
 @ExtendWith(SpringExtension.class)
 class RestintroApplicationTests implements WithAssertions {
@@ -19,7 +19,7 @@ class RestintroApplicationTests implements WithAssertions {
 	private WebTestClient webClient;
 
 	@Test
-	void getPonies() {
+	void getCategories() {
 		var categories = webClient.get()
 				.uri("/categories")
 				.exchange()
@@ -32,8 +32,8 @@ class RestintroApplicationTests implements WithAssertions {
 	}
 
 	@Test
-	void addPony() {
-		var toCreate = new Category().name("C++ Q&A - " + UUID.randomUUID())
+	void addCategory() {
+		var toCreate = new Category().id(0).name("C++ Q&A")
 				.description("what even is provenance");
 		var created = webClient.post()
 				.uri("/categories")
