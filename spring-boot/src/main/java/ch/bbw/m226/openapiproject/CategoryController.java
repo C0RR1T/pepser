@@ -33,6 +33,8 @@ public class CategoryController implements CategoriesApi {
 
     @Override
     public ResponseEntity<Category> getCategoryById(Integer id) {
-        return this.service.getCategoryById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return this.service.getCategoryById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
