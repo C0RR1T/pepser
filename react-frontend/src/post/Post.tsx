@@ -1,61 +1,83 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import React, { useState } from 'react';
+import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { CommentsApi, PostApi } from '../generated/openapi';
+import { CommentsApi, PostApi, VoteActionVoteEnum } from '../generated/openapi';
 import Container from 'react-bootstrap/Container';
-import Spinner from 'react-bootstrap/Spinner';
-import Card from 'react-bootstrap/Card';
-import ReactMarkdown from 'react-markdown';
-import upvote from '../assets/upvote.png';
-import downvote from '../assets/downvote.png';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import PostComment from './PostComment';
 import LoadContainer from '../LoadContainer';
+import { queryClient } from '../index';
+import UpvoteAction from './UpvoteAction';
+import Voting from './Voting';
+import ReactMarkdown from 'react-markdown';
+import PostComment from './PostComment';
+import Card from 'react-bootstrap/Card';
 
 const Post = () => {
-    const { post: postId } = useParams();
+    const postId = parseInt(useParams<{ post: string }>().post!);
     const { data: post, status } = useQuery(['post', postId], () =>
-        new PostApi().getPostById({ postId: postId as unknown as number })
+        new PostApi().getPostById({ postId })
+    );
+    const { data: votes } = useQuery(['votes', postId], () =>
+        new PostApi().getVotesByPostId({
+            postId,
+        })
     );
     const { data: comments, status: commentStatus } = useQuery(
         ['comments', postId],
         () =>
             new CommentsApi().getComments({
-                postId: postId as unknown as number,
+                postId,
             })
     );
+
+    const [upvoteAction, setUpvoteAction] = useState<UpvoteAction>('no-action');
+
+    const voteMutation = useMutation(
+        ({ vote }: { vote: VoteActionVoteEnum }) =>
+            new PostApi().changeVotesByPostId({ postId, voteAction: { vote } }),
+        {
+            onSuccess: () => queryClient.invalidateQueries(['votes', postId]),
+        }
+    );
+
+    function vote(isUpvote: boolean) {
+        const undoDownvote = !isUpvote && upvoteAction === 'downvoted';
+        const undoUpvote = isUpvote && upvoteAction === 'upvoted';
+        if (undoDownvote || undoUpvote) {
+            if (undoUpvote) {
+                voteMutation.mutate({
+                    vote: VoteActionVoteEnum.UndoUpvote,
+                });
+            } else {
+                voteMutation.mutate({
+                    vote: VoteActionVoteEnum.UndoDownvote,
+                });
+            }
+            setUpvoteAction('no-action');
+        } else {
+            voteMutation.mutate({
+                vote: isUpvote
+                    ? VoteActionVoteEnum.Upvote
+                    : VoteActionVoteEnum.Downvote,
+            });
+            setUpvoteAction(isUpvote ? 'upvoted' : 'downvoted');
+        }
+    }
+
     return (
         <Container>
-            {status === 'loading' && <Spinner animation={'border'} />}
+            {status === 'loading' && <LoadContainer />}
             {post && (
                 <Row>
-                    <Col lg={1}>
-                        <Row>
-                            <Container
-                                className={'d-flex justify-content-center'}>
-                                <img
-                                    src={upvote}
-                                    width={32}
-                                    alt={'Upvote the post'}
-                                />
-                            </Container>
-                        </Row>
-                        <Row className={'text-center'}>
-                            <b>{(post.likes ?? 0) - (post.dislikes ?? 0)}</b>
-                        </Row>
-                        <Row>
-                            <Container
-                                className={'d-flex justify-content-center'}>
-                                <img
-                                    src={downvote}
-                                    width={32}
-                                    alt={'Downvote the post'}
-                                />
-                            </Container>
-                        </Row>
+                    <Col md={1}>
+                        <Voting
+                            votes={votes}
+                            vote={vote}
+                            upvoteAction={upvoteAction}
+                        />
                     </Col>
-                    <Col lg={11}>
+                    <Col>
                         <h1>{post.title}</h1>
                         <Card.Subtitle>
                             Posted on {formatDate(post.createdDate)} by{' '}
