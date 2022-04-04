@@ -2,7 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { useQuery } from 'react-query';
 import { CategoryApi } from './generated/openapi';
-import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
