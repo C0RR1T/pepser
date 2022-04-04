@@ -103,12 +103,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Post"
-        400:
-          description: Either username or content too long
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/PostError"
   /posts/{postId}:
     get:
       tags:
@@ -171,12 +165,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Comment"
-        400:
-          description: Either username or content too long
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/PostError"
         404:
           description: Post not found
   /posts/{postId}/votes:
@@ -337,8 +325,3 @@ components:
         description:
           type: string
           example: Pictures of Rick Astley
-
-    PostError:
-      enum:
-        - username-too-long
-        - post-too-long

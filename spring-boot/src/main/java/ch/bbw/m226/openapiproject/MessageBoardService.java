@@ -28,7 +28,7 @@ public class MessageBoardService {
                 .author("hugo")
                 .category(0)
                 .content("guten morgen")
-                .title("begrüssung")
+                .title("hallo")
                 .likes(6)
                 .dislikes(1)
                 .createdDate(LocalDate.of(2020, 5, 1))
@@ -80,7 +80,7 @@ public class MessageBoardService {
     }
 
     public Optional<List<Post>> getPosts(Integer categoryId) {
-        return Optional.of(this.posts.get(categoryId));
+        return Optional.ofNullable(this.posts.get(categoryId));
     }
 
     public Optional<Post> createPost(Post post) {
