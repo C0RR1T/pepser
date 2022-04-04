@@ -217,6 +217,7 @@ paths:
             schema:
               properties:
                 vote:
+                  type: string
                   enum:
                     - no-vote
                     - upvote
