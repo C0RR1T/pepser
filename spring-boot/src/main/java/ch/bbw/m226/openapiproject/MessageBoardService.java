@@ -50,8 +50,8 @@ public class MessageBoardService {
                     switch (voteAction.getVote()) {
                         case UPVOTE -> post.setLikes(post.getLikes() + 1);
                         case DOWNVOTE -> post.setDislikes(post.getDislikes() + 1);
-                        case DISABLE_UPVOTE -> post.setLikes(Math.max(post.getLikes() - 1, 0));
-                        case DISABLE_DOWNVOTE -> post.setLikes(Math.max(post.getDislikes() -1, 0));
+                        case UNDO_UPVOTE -> post.setLikes(Math.max(post.getLikes() - 1, 0));
+                        case UNDO_DOWNVOTE -> post.setLikes(Math.max(post.getDislikes() -1, 0));
                     }
                     return null;
                 });
