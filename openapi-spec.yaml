@@ -113,7 +113,7 @@ paths:
     get:
       tags:
         - Post
-      summary: Get all posts of a category
+      summary: Get a post by ID
       operationId: getPostById
       parameters:
         - name: postId
@@ -178,9 +178,65 @@ paths:
                 $ref: "#/components/schemas/PostError"
         404:
           description: Post not found
+  /posts/{postId}/votes:
+    parameters:
+      - name: postId
+        in: path
+        schema:
+          type: integer
+          description: ID of the post
+    get:
+      tags:
+        - Post
+      summary: Get the votes of a Post
+      operationId: getVotesByPostId
+
+      responses:
+        200:
+          description: The votes on a post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Votes"
+        404:
+          description: Post not found
+    put:
+      tags:
+        - Post
+      summary: Upvote / downvote a post
+      operationId: changeVotesByPostId
+      responses:
+        200:
+          description: Successfully added vote
+        404:
+          description: Post not found
+      requestBody:
+        description: Votes schema with either 0 or 1 in the upvote / downvote scheme
+        content:
+          application/json:
+            schema:
+              properties:
+                vote:
+                  enum:
+                    - no-vote
+                    - upvote
+                    - downvote
 
 components:
   schemas:
+    Votes:
+      required:
+        - upvote
+        - downvote
+      properties:
+        upvote:
+          type: integer
+          default: 0
+          example: 32
+        downvote:
+          type: integer
+          default: 0
+          example: 64
     Post:
       required:
         - title
@@ -214,13 +270,6 @@ components:
           type: integer
           example: 5
           minimum: 0
-          
-        likes:
-          type: integer
-          example: 5
-        dislikes:
-          type: integer
-          example: 1
     Comment:
       required:
         - author
