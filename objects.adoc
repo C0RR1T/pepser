@@ -94,7 +94,46 @@ user <- backend : 201 Post
 Vom user kann eine neue Kategorie erstellt werden.
 
 == Test cases
-=== 1 Applikation funktioniert
-1. Applikation starten
-2. schauen ob sie funktioniert
-3. sie sollte funktionieren
+
+=== TC1 Standardkategorien abrufen
+
+|===
+|Typ | Beschreibung
+
+|Beschreibung
+|Nach einem Restart wird getestet, welche Kategorien bereits vorhanden sind.
+
+|Vorbedingungen
+|Backend vorhanden
+
+|Steps
+|1. Backend neustarten
+
+2. Auf den endpoint `/categories` gehen
+
+3. Die Ergebnis vergleichen
+
+|Ergebnis
+|Die Kategorie "Rick Astley Pics" ist vorhanden
+|===
+
+
+=== TC2 Kategorie erstellen
+
+|===
+|Typ | Beschreibung
+
+|Beschreibung
+|Wenn eine Kategorie erstellt wird, wird dieselbe Kategorie erfolgreich zurückgegeben.
+
+|Vorbedingungen
+|Backend läuft
+
+|Steps
+|1. Kateogorie namens "C++ Q&A" mit der Beschreibung "By Bjarne Stroustrup" und der ID "0" erstellen.
+
+2. Das Ergebnis vergleichen
+
+|Ergebnis
+| Die ID ist nicht "0", und die Beschreibung und der Name ist gleich.
+|===

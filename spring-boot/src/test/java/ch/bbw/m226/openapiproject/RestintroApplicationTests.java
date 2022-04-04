@@ -15,37 +15,43 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @ExtendWith(SpringExtension.class)
 class RestintroApplicationTests implements WithAssertions {
 
-	@Autowired
-	private WebTestClient webClient;
+    @Autowired
+    private WebTestClient webClient;
 
-	@Test
-	void getCategories() {
-		var categories = webClient.get()
-				.uri("/categories")
-				.exchange()
-				.expectStatus()
-				.isOk()
-				.expectBodyList(Category.class)
-				.returnResult()
-				.getResponseBody();
-		assertThat(categories).hasSize(1);
-	}
 
-	@Test
-	void addCategory() {
-		var toCreate = new Category().id(0).name("C++ Q&A")
-				.description("what even is provenance");
-		var created = webClient.post()
-				.uri("/categories")
-				.bodyValue(toCreate)
-				.exchange()
-				.expectStatus()
-				.isCreated()
-				.expectBody(Category.class)
-				.returnResult()
-				.getResponseBody();
-		assertThat(created).usingRecursiveComparison()
-				.ignoringFields("id")
-				.isEqualTo(toCreate);
-	}
+    @Test
+    void getCategories() {
+        var categories = webClient.get()
+                .uri("/categories")
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(Category.class)
+                .returnResult()
+                .getResponseBody();
+        assertThat(categories).contains(new Category()
+                .id(0)
+                .description("Pictures of Rick Astley")
+                .name("Rick Astley Pics"));
+    }
+
+    @Test
+    void addCategory() {
+        var toCreate = new Category().id(0).name("C++ Q&A")
+                .description("By Bjarne Stroustrup");
+        var created = webClient.post()
+                .uri("/categories")
+                .bodyValue(toCreate)
+                .exchange()
+                .expectStatus()
+                .isCreated()
+                .expectBody(Category.class)
+                .returnResult()
+                .getResponseBody();
+        assertThat(created).isNotNull();
+        assertThat(created).usingRecursiveComparison()
+                .ignoringFields("id")
+                .isEqualTo(toCreate);
+        assertThat(created.getId()).isNotEqualTo(0);
+    }
 }
