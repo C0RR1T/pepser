@@ -41,20 +41,17 @@ public class MessageBoardService {
         return this.categories.values().stream().toList();
     }
 
-    public Optional<Void> changeVotesByPostId(Integer postId, VoteAction voteAction) {
-        return this.posts.values().stream()
-                .flatMap(Collection::stream)
-                .filter(post -> post.getId().equals(postId))
-                .findAny()
-                .map(post -> {
-                    switch (voteAction.getVote()) {
-                        case UPVOTE -> post.setLikes(post.getLikes() + 1);
-                        case DOWNVOTE -> post.setDislikes(post.getDislikes() + 1);
-                        case UNDO_UPVOTE -> post.setLikes(Math.max(post.getLikes() - 1, 0));
-                        case UNDO_DOWNVOTE -> post.setLikes(Math.max(post.getDislikes() -1, 0));
-                    }
-                    return null;
-                });
+    public Optional<Integer> changeVotesByPostId(Integer postId, VoteAction voteAction) {
+        return getPostById(postId).map(post -> {
+            switch (voteAction.getVote()) {
+                case UPVOTE -> post.setLikes(post.getLikes() + 1);
+                case DOWNVOTE -> post.setDislikes(post.getDislikes() + 1);
+                case UNDO_UPVOTE -> post.setLikes(Math.max(post.getLikes() - 1, 0));
+                case UNDO_DOWNVOTE -> post.setLikes(Math.max(post.getDislikes() - 1, 0));
+            }
+            // map returns Optional.ofNullable() so null doesn't work with Optional<Void>
+            return 0;
+        });
     }
 
     public Category createCategory(Category category) {
