@@ -32,6 +32,8 @@ public class MessageBoardService {
                 .dislikes(1)
                 .createdDate(LocalDate.of(2020, 5, 1))
         ));
+
+        this.comments.put(1, new ArrayList<>());
     }
 
     public List<Category> getCategories() {
