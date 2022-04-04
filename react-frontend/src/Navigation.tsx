@@ -58,7 +58,7 @@ const Navigation = () => {
                                 </span>
                             }>
                             {categories?.map(category => (
-                                <NavDropdown.Item>
+                                <NavDropdown.Item key={category.id}>
                                     <Link
                                         to={`/${category.id}`}
                                         style={{
