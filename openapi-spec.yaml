@@ -223,7 +223,8 @@ paths:
 components:
   schemas:
     VoteAction:
-      required: vote
+      required:
+        - vote
       properties:
         vote:
           type: string
