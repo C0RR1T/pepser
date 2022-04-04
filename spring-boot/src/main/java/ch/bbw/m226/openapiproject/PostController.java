@@ -22,10 +22,12 @@ public class PostController implements PostsApi {
         this.service = service;
     }
 
+    // thank you java type system
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
-    public ResponseEntity<Void> changeVotesByPostId(Integer postId, VoteAction voteAction) {
+    public ResponseEntity changeVotesByPostId(Integer postId, VoteAction voteAction) {
         return this.service.changeVotesByPostId(postId, voteAction)
-                .map(ResponseEntity::ok)
+                .map(x -> ResponseEntity.ok().build())
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
