@@ -217,8 +217,8 @@ components:
         vote:
           type: string
           enum:
-            - disable-upvote
-            - disable-downvote
+            - undo-upvote
+            - undo-downvote
             - upvote
             - downvote
     Votes:
