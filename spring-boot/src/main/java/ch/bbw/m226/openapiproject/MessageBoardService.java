@@ -3,6 +3,7 @@ package ch.bbw.m226.openapiproject;
 import ch.bbw.m226.openapi.generated.dto.Category;
 import ch.bbw.m226.openapi.generated.dto.Comment;
 import ch.bbw.m226.openapi.generated.dto.Post;
+import ch.bbw.m226.openapi.generated.dto.VoteAction;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -38,6 +39,22 @@ public class MessageBoardService {
 
     public List<Category> getCategories() {
         return this.categories.values().stream().toList();
+    }
+
+    public Optional<Void> changeVotesByPostId(Integer postId, VoteAction voteAction) {
+        return this.posts.values().stream()
+                .flatMap(Collection::stream)
+                .filter(post -> post.getId().equals(postId))
+                .findAny()
+                .map(post -> {
+                    switch (voteAction.getVote()) {
+                        case UPVOTE -> post.setLikes(post.getLikes() + 1);
+                        case DOWNVOTE -> post.setDislikes(post.getDislikes() + 1);
+                        case DISABLE_UPVOTE -> post.setLikes(Math.max(post.getLikes() - 1, 0));
+                        case DISABLE_DOWNVOTE -> post.setLikes(Math.max(post.getDislikes() -1, 0));
+                    }
+                    return null;
+                });
     }
 
     public Category createCategory(Category category) {
@@ -94,6 +111,4 @@ public class MessageBoardService {
             return comment;
         });
     }
-
-
 }

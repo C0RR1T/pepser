@@ -279,6 +279,13 @@ components:
           type: integer
           example: 5
           minimum: 0
+
+        likes:
+          type: integer
+          example: 5
+        dislikes:
+          type: integer
+          example: 1
     Comment:
       required:
         - author
