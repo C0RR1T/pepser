@@ -211,20 +211,25 @@ paths:
         404:
           description: Post not found
       requestBody:
-        description: Votes schema with either 0 or 1 in the upvote / downvote scheme
+        description: Upvote or downvote a post based on request body
         content:
           application/json:
             schema:
-              properties:
-                vote:
-                  type: string
-                  enum:
-                    - no-vote
-                    - upvote
-                    - downvote
+              $ref: "#/components/schemas/VoteAction"
+
 
 components:
   schemas:
+    VoteAction:
+      required: vote
+      properties:
+        vote:
+          type: string
+          enum:
+            - disable-upvote
+            - disable-downvote
+            - upvote
+            - downvote
     Votes:
       required:
         - upvote
