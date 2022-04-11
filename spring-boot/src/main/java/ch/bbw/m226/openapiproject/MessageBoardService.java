@@ -43,7 +43,7 @@ public class MessageBoardService {
     }
 
     public Optional<Integer> changeVotesByPostId(Integer postId, VoteAction voteAction) {
-        return getPostById(postId).map(post -> {
+        return this.getPostById(postId).map(post -> {
             switch (voteAction.getVote()) {
                 case UPVOTE -> post.setLikes(post.getLikes() + 1);
                 case DOWNVOTE -> post.setDislikes(post.getDislikes() + 1);
@@ -56,7 +56,7 @@ public class MessageBoardService {
     }
 
     public Category createCategory(Category category) {
-        final var newId = random.nextInt();
+        final var newId = this.randomId();
 
         category.id(newId);
 
@@ -82,7 +82,7 @@ public class MessageBoardService {
     }
 
     public Optional<Post> createPost(Post post) {
-        final var newId = random.nextInt();
+        final var newId = this.randomId();
         final var createdDate = LocalDate.now();
 
         post.id(newId).createdDate(createdDate);
@@ -99,7 +99,7 @@ public class MessageBoardService {
     }
 
     public Optional<Comment> createComment(Integer postId, Comment comment) {
-        final var commentId = this.random.nextInt();
+        final var commentId = this.randomId();
         final var createdDate = LocalDate.now();
 
         comment.id(commentId).createdDate(createdDate);
@@ -108,5 +108,10 @@ public class MessageBoardService {
             comments.add(comment);
             return comment;
         });
+    }
+
+    private Integer randomId() {
+        final var id = this.random.nextInt();
+        return Math.abs(id);
     }
 }
