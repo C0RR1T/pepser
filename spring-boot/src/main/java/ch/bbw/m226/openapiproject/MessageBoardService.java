@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class MessageBoardService {
 
-    private final Map<Integer, Category> categories = new HashMap<>();
-    private final Map<Integer, List<Post>> posts = new HashMap<>();
-    private final Map<Integer, List<Comment>> comments = new HashMap<>();
+    private final Map<Integer, Category> categories = new ConcurrentHashMap<>();
+    private final Map<Integer, List<Post>> posts = new ConcurrentHashMap<>();
+    private final Map<Integer, List<Comment>> comments = new ConcurrentHashMap<>();
 
     private final Random random = new Random();
 
