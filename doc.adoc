@@ -66,19 +66,35 @@ user --> UC4
 
 Ich will unter einem beliebigen Namen einen Post erstellen.
 
+[plantuml]
+----
+@startuml
+
+actor user
+
+user -> backend : POST /posts
+user <- backend : 201 Post
+@enduml
+----
+
 === UC2 Post Kommentieren
 
 Ich will unter einem Post unter einem beliebigen Namen einen Kommentar erstellen.
 
-=== UC3 Post bearbeiten
+[plantuml]
+----
+@startuml
 
-Ich will den Inhalt jegliches Posts bearbeiten.
+actor user
 
-=== UC4 Post löschen
+user -> backend : POST /posts/{postId}/comments
+user <- backend : 201 Comment
+@enduml
+----
 
-Ich will einen beliebigen Post löschen.
+== UC3 Kategorie erstellen
 
-== UC5 Kategorie erstellen
+Ich will eine neue Kategorie erstellen können.
 
 [plantuml]
 ----
@@ -117,7 +133,6 @@ Vom user kann eine neue Kategorie erstellt werden.
 |Die Kategorie "Rick Astley Pics" ist vorhanden
 |===
 
-
 === TC2 Kategorie erstellen
 
 |===
@@ -136,4 +151,47 @@ Vom user kann eine neue Kategorie erstellt werden.
 
 |Ergebnis
 | Die ID ist nicht "0", und die Beschreibung und der Name ist gleich.
+|===
+
+=== TC3 Post erstellen
+
+|===
+|Typ | Beschreibung
+
+|Beschreibung
+|Wenn man einen Post erstellt, sollte der Post mit
+der generierten ID zurückgegeben werden.
+
+|Vorbedingungen
+|Backend und Frontend laufen
+
+|Steps
+|1. In der Kategorie "Rick Astley Pics" einen neuen Post erstellen. Titel: "Pic 1", Inhalt: "Guten morgen", Author: "Rick Astley"
+
+2. Das Ergebnis vergleichen
+
+|Ergebnis
+| Die ID ist nicht "0", und die restlichen Properties sind gleich. Das createdDate ist auf das aktuelle Datum gesetzt.
+|===
+
+=== TC4 Post kommentieren
+
+|===
+|Typ | Beschreibung
+
+|Beschreibung
+|Wenn auf einem Post kommentiert wird, sollte der Kommentar auf dem Post mit einer generierten ID erscheinen.
+
+|Vorbedingungen
+|Backend und Frontend laufen, Post in TC3 erstellt
+
+|Steps
+|1. Post aus TC3 öffnen
+
+2. Auf dem Post einen Kommentar erstellen. Inhalt: "Guten Morgen!", Author: "Niemand".
+
+3. Das Ergebnis vergleichen
+
+|Ergebnis
+| Die ID ist nicht "0", und die restlichen Properties sind gleich. Das createdDate ist auf das aktuelle Datum gesetzt.
 |===
