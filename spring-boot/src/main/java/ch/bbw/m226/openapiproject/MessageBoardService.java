@@ -85,7 +85,10 @@ public class MessageBoardService {
         final var newId = this.randomId();
         final var createdDate = LocalDate.now();
 
-        post.id(newId).createdDate(createdDate);
+        post.id(newId)
+                .createdDate(createdDate)
+                .likes(0)
+                .dislikes(0);
 
         return Optional.ofNullable(this.posts.get(post.getCategory())).map(posts -> {
             posts.add(post);
@@ -102,7 +105,10 @@ public class MessageBoardService {
         final var commentId = this.randomId();
         final var createdDate = LocalDate.now();
 
-        comment.id(commentId).createdDate(createdDate);
+        comment.id(commentId)
+                .createdDate(createdDate)
+                .likes(0)
+                .dislikes(0);
 
         return Optional.ofNullable(this.comments.get(postId)).map(comments -> {
             comments.add(comment);
