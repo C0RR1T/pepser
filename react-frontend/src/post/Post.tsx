@@ -12,6 +12,7 @@ import Voting from './Voting';
 import ReactMarkdown from 'react-markdown';
 import PostComment from './PostComment';
 import Card from 'react-bootstrap/Card';
+import CreateCommentForm from './CreateCommentForm';
 
 const Post = () => {
     const postId = parseInt(useParams<{ post: string }>().post!);
@@ -56,7 +57,7 @@ const Post = () => {
             }
             setUpvoteAction('no-action');
         } else {
-            if (upvoteAction == 'no-action') {
+            if (upvoteAction === 'no-action') {
                 voteMutation.mutate({
                     vote: isUpvote
                         ? VoteActionVoteEnum.Upvote
@@ -99,6 +100,10 @@ const Post = () => {
                         <br />
                         <ReactMarkdown>{post.content}</ReactMarkdown>
                     </Col>
+                    <hr />
+                    <h3>Create a comment</h3>
+                    <CreateCommentForm postId={postId} />
+                    <br />
                     <hr />
                     {commentStatus === 'error' && (
                         <i>Comments could not be loaded.</i>
