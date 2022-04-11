@@ -28,6 +28,7 @@ jobs:
       - name: Generate openapi
         run: |
           cd spring-boot
+          chmod +x ./gradlew
           ./gradlew openapi
 
       - name: Build frontend
