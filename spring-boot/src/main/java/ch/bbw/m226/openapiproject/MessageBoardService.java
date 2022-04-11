@@ -78,7 +78,12 @@ public class MessageBoardService {
     }
 
     public Optional<List<Post>> getPosts(Integer categoryId) {
-        return Optional.ofNullable(this.posts.get(categoryId));
+
+        return Optional.ofNullable(this.posts.get(categoryId))
+                .map(posts -> {
+                    posts.sort(Comparator.comparing(post -> post.getDislikes() - post.getLikes())); // reversed
+                    return posts;
+                });
     }
 
     public Optional<Post> createPost(Post post) {
