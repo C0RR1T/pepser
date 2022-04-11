@@ -67,7 +67,7 @@ public class MessageBoardService {
     }
 
     public Optional<Category> getCategoryById(Integer id) {
-        return this.categories.values().stream().filter(val -> val.getId().equals(id)).findFirst();
+        return Optional.ofNullable(this.categories.get(id));
     }
 
     public Optional<Post> getPostById(Integer postId) {
