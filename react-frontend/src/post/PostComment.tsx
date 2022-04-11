@@ -2,8 +2,6 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { Comment } from '../generated/openapi';
 import { formatDate } from './Post';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 const PostComment: React.FC<{ comment: Comment }> = ({
     comment: { author, createdDate, content },
@@ -11,15 +9,12 @@ const PostComment: React.FC<{ comment: Comment }> = ({
     return (
         <Card>
             <Card.Body>
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <Card.Subtitle>
-                            Posted on {formatDate(createdDate)} by {author}
-                        </Card.Subtitle>
-                        {content}
-                    </Col>
-                </Row>
+                <Card.Subtitle>
+                    <strong>
+                        Posted on {formatDate(createdDate)} by {author}
+                    </strong>
+                </Card.Subtitle>
+                {content}
             </Card.Body>
         </Card>
     );
