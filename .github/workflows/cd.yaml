@@ -5,6 +5,8 @@ on:
       - master
     tags:
       - 'v*'
+  workflow_dispatch:
+
 jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
@@ -14,7 +16,8 @@ jobs:
       - name: Generate OpenAPI spec
         run: |
           cd spring-boot &&
-          ./gradlew openApiGenerateJavascript
+          chmod +x ./gradlew
+          ./gradlew openApiGenerateJavascript &&
       - name: Download packages
         run: |
           cd react-frontend
