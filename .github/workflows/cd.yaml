@@ -1,0 +1,35 @@
+name: CD
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Generate OpenAPI spec
+        run: |
+          cd spring-boot
+          chmod +x ./gradlew
+          ./gradlew openApiGenerateJavascript
+      - name: Download packages
+        run: |
+          cd react-frontend
+          yarn --frozen-lockfile
+      - name: Build the project
+        run: | 
+          cd react-frontend
+          yarn build
+      - name: Release to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          branch: gh-pages
+          folder: react-frontend/build
+
+
