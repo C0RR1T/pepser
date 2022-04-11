@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/pepser/static/css/main.634d2250.css",
-    "main.js": "/pepser/static/js/main.6765123d.js",
+    "main.js": "/pepser/static/js/main.1d98d778.js",
     "static/media/downvote.png": "/pepser/static/media/downvote.7484eac1ba454f249f1f.png",
     "static/media/logo.png": "/pepser/static/media/logo.a3b7b4d26fc4d0c3f9b8.png",
     "static/media/upvote.png": "/pepser/static/media/upvote.a3b7b4d26fc4d0c3f9b8.png",
     "index.html": "/pepser/index.html",
     "main.634d2250.css.map": "/pepser/static/css/main.634d2250.css.map",
-    "main.6765123d.js.map": "/pepser/static/js/main.6765123d.js.map"
+    "main.1d98d778.js.map": "/pepser/static/js/main.1d98d778.js.map"
   },
   "entrypoints": [
     "static/css/main.634d2250.css",
-    "static/js/main.6765123d.js"
+    "static/js/main.1d98d778.js"
   ]
 }
