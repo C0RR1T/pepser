@@ -56,11 +56,24 @@ const Post = () => {
             }
             setUpvoteAction('no-action');
         } else {
-            voteMutation.mutate({
-                vote: isUpvote
-                    ? VoteActionVoteEnum.Upvote
-                    : VoteActionVoteEnum.Downvote,
-            });
+            if (upvoteAction == 'no-action') {
+                voteMutation.mutate({
+                    vote: isUpvote
+                        ? VoteActionVoteEnum.Upvote
+                        : VoteActionVoteEnum.Downvote,
+                });
+            } else {
+                voteMutation.mutate({
+                    vote: isUpvote
+                        ? VoteActionVoteEnum.UndoDownvote
+                        : VoteActionVoteEnum.UndoUpvote,
+                });
+                voteMutation.mutate({
+                    vote: isUpvote
+                        ? VoteActionVoteEnum.Upvote
+                        : VoteActionVoteEnum.Downvote,
+                });
+            }
             setUpvoteAction(isUpvote ? 'upvoted' : 'downvoted');
         }
     }
