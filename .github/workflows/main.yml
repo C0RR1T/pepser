@@ -25,11 +25,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Generate openapi
+        run: |
+          cd spring-boot
+          chmod +x ./gradlew
+          ./gradlew openapi
+
       - name: Build frontend
         run: |
           cd react-frontend
           yarn install --frozen-lockfile
-          yarn test
+          yarn test --passWithNoTests
           yarn build
 
       - name: Build backend
