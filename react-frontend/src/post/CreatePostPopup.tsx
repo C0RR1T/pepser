@@ -92,7 +92,7 @@ const CreatePostPopup: React.FC<{
                     <Button variant={'danger'} onClick={close}>
                         Close
                     </Button>
-                    <Button variant={'success'} type={'submit'}>
+                    <Button variant={'success'} onClick={formik.submitForm}>
                         Create Post
                     </Button>
                 </Modal.Footer>
