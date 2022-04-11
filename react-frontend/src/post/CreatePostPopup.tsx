@@ -84,7 +84,7 @@ const CreatePostPopup: React.FC<{
                             value={formik.values.content}
                             placeholder={'Content of your shit post'}
                             onChange={formik.handleChange}
-                            rows={50}
+                            rows={15}
                         />
                     </Form.Group>
                 </Modal.Body>
