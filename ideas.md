@@ -11,7 +11,7 @@
 
 ## Blog
 
-### Objects
+### Message board
 - Category
 - Post
 - Comment
