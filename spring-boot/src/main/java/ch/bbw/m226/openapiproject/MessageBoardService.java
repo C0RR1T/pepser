@@ -42,13 +42,13 @@ public class MessageBoardService {
         return this.categories.values().stream().toList();
     }
 
-    public Optional<Integer> changeVotesByPostId(Integer postId, VoteAction voteAction) {
+    public synchronized Optional<Integer> changeVotesByPostId(Integer postId, VoteAction voteAction) {
         return this.getPostById(postId).map(post -> {
             switch (voteAction.getVote()) {
                 case UPVOTE -> post.setLikes(post.getLikes() + 1);
                 case DOWNVOTE -> post.setDislikes(post.getDislikes() + 1);
                 case UNDO_UPVOTE -> post.setLikes(Math.max(post.getLikes() - 1, 0));
-                case UNDO_DOWNVOTE -> post.setLikes(Math.max(post.getDislikes() - 1, 0));
+                case UNDO_DOWNVOTE -> post.setDislikes(Math.max(post.getDislikes() - 1, 0));
             }
             // map returns Optional.ofNullable() so null doesn't work with Optional<Void>
             return 0;
