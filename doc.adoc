@@ -195,3 +195,21 @@ der generierten ID zurückgegeben werden.
 |Ergebnis
 | Die ID ist nicht "0", und die restlichen Properties sind gleich. Das createdDate ist auf das aktuelle Datum gesetzt.
 |===
+
+== Wireframes
+
+=== Categories
+image::Catagories.png[]
+=== Category
+image::Category.png[]
+=== Post
+image::Post.png[]
+
+== Feedback & Retrospektive
+Mir hat dieses Projekt sehr gefallen. Ich finde wir haben eine gute
+Website und ein solides Backend gemacht. Ich habe durch dieses Projekt
+OpenAPI kennengelernt, was ich auf jeden Fall weiter benutzen werde.
+Ich finde es eine super Art, um eine REST-API zu spezifizieren. Vor allem
+das Code generaten finde ich sehr gut (Vorallem für den client, dann muss
+keine extra library wie axios benutzt werden.)
+
