@@ -206,6 +206,7 @@ image::Category.png[]
 image::Post.png[]
 
 == Feedback & Retrospektive
+=== Corsin
 Mir hat dieses Projekt sehr gefallen. Ich finde wir haben eine gute
 Website und ein solides Backend gemacht. Ich habe durch dieses Projekt
 OpenAPI kennengelernt, was ich auf jeden Fall weiter benutzen werde.
@@ -213,3 +214,9 @@ Ich finde es eine super Art, um eine REST-API zu spezifizieren. Vor allem
 das Code generaten finde ich sehr gut (Vorallem für den client, dann muss
 keine extra library wie axios benutzt werden.)
 
+=== Nils
+Ich fand das Projekt ganz gut, und habe damit ebenfalls OopenAPI kennegelernt,
+was ich mir sicher immer im Hinterkopf behalten kann. Bei der Backendarbeit
+habe ich mir jetzt nicht immer *so* viel Mühe gegeben, da mir das Arbeiten mit
+Java nicht so viel Spass gemacht hat (🦀🦀🦀), aber ich bin ganz zufrieden, 
+wie es rausgekommen ist.
